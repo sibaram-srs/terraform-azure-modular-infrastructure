@@ -1,45 +1,52 @@
-# Terraform Azure Landing Zone
+📌 Terraform Azure Modular Infrastructure
+🚀 Overview
 
-Infrastructure as Code (IaC) implementation of an Azure Landing Zone using Terraform. This project provisions and manages core Azure infrastructure components in a modular and reusable manner.
+This project provides a modular Infrastructure as Code (IaC) setup using Terraform to deploy core Azure resources in a structured and reusable way.
 
-## Architecture Components
+It follows a module-based architecture to ensure scalability, reusability, and maintainability.
 
-The repository contains Terraform configurations for:
+🏗️ Architecture Components
 
-* Resource Groups
-* Virtual Networks (VNet)
-* Subnets
-* Network Security Groups (NSG)
-* Virtual Machines (VM)
-* Bastion Host
-* VNet Peering
-* Storage Accounts
+This infrastructure includes:
 
-## Repository Structure
+Resource Group
+Storage Account
+Virtual Network (VNet)
+Subnet
+Network Security Group (NSG)
+Public IP
+Network Interface (NIC)
+Virtual Machine (VM)
+
+📁 Project Structure
 
 ```text
-AZ_LANDING_ZONE/
-├── bastion/
-├── nsg/
-├── resource_group/
-├── storage_account/
-├── subnet/
-├── virtual_network/
-├── vm/
-└── vnet_peering/
+terraform-azure-modular-infrastructure/
+│
+├── module/
+│   ├── resource_group/
+│   ├── storage_account/
+│   ├── virtual_network/
+│   ├── subnet/
+│   ├── nsg/
+│   ├── pip/
+│   ├── nic/
+│   └── vm/
+│
+├── env/
+│   └── dev/
+│
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars.example
+├── .gitignore
+└── README.md
 ```
-
-Each folder represents an independent Terraform module/component and contains:
-
-* `main.tf` – Resource definitions
-* `variables.tf` – Input variables
-* `outputs.tf` – Output values
-* `provider.tf` – Provider configuration
-* `terraform.tfvars` – Environment-specific variable values (not committed)
 
 ## Prerequisites
 
-* Terraform
+* Terraform installed
 * Azure Subscription
 * Azure CLI
 * Appropriate Azure RBAC permissions
@@ -58,55 +65,41 @@ Verify subscription:
 az account show
 ```
 
-## Deployment
+🚀 How to Deploy
 
-Navigate to the required component directory:
-
-```bash
-cd virtual_network
-```
-
-Initialize Terraform:
+1. Initialize Terraform
 
 ```bash
 terraform init
 ```
+2. Validate configuration
 
-Review execution plan:
+```bash
+terraform validate
+```
+3. Plan deployment
 
 ```bash
 terraform plan
 ```
 
-Deploy infrastructure:
+4. Apply infrastructure
 
 ```bash
-terraform apply
+terraform apply -auto-approve
 ```
 
-## Security Notes
+🔒 Security Best Practices
+.tfstate files are ignored via .gitignore
+Sensitive data (passwords, secrets) should not be committed
+Use Azure Key Vault for production secrets
 
-The following files are excluded from version control:
-
-* `.terraform/`
-* `terraform.tfstate`
-* `terraform.tfstate.backup`
-* `.terraform.lock.hcl`
-* `terraform.tfvars`
-
-Sensitive values and state files should never be committed to GitHub.
-
-## Learning Objectives
-
-This project demonstrates:
-
-* Azure Infrastructure as Code (IaC)
-* Terraform Module-Based Design
-* Network Segmentation with VNets and Subnets
-* NSG Configuration and Security Controls
-* Azure Bastion Deployment
-* VNet Peering
-* Infrastructure Automation Best Practices
+📌 Features
+Fully modular Terraform design
+Reusable components
+Scalable architecture
+Clean separation of concerns
+Supports multi-environment setup (dev/prod ready)
 
 ## Author
 
@@ -114,4 +107,8 @@ Sibaram Sahu
 
 ## License
 
-This project is intended for learning, experimentation, and infrastructure automation practice.
+This project is open-source for learning and demonstration purposes.
+
+⭐ If you like this project
+
+Give it a ⭐ on GitHub and feel free to fork it!
